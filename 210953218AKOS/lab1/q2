@@ -1,0 +1,27 @@
+student2@MIT-ICT-LAB8-03:~/210953218AKOS/randomtxts$ cat >file3.txt
+yeni bolluk sezonu baslasin    
+bahar gelsin
+dunyaya dokun
+insanların yeni hasatın kokusunu almasına izin ver
+taze cimenlerin uzerinde yurumelerine izin verin
+hayatın yeni baslangıcına izin ver
+student2@MIT-ICT-LAB8-03:~/210953218AKOS/randomtxts$ head -n 2 file3.txt
+yeni bolluk sezonu baslasin
+bahar gelsin
+student2@MIT-ICT-LAB8-03:~/210953218AKOS/randomtxts$ head -c 12 file3.txt
+yeni bolluk student2@MIT-ICT-LAB8-03:~/210953218AKOS/randomtxts$ ^C
+student2@MIT-ICT-LAB8-03:~/210953218AKOS/randomtxts$ tail -n 2 file3.txt
+taze cimenlerin uzerinde yurumelerine izin verin
+hayatın yeni baslangıcına izin ver
+student2@MIT-ICT-LAB8-03:~/210953218AKOS/randomtxts$ tail -c 12 file3.txt
+na izin ver
+student2@MIT-ICT-LAB8-03:~/210953218AKOS/randomtxts$ cp -n 3 file3.txt file4.txt
+cp: target 'file4.txt' is not a directory
+student2@MIT-ICT-LAB8-03:~/210953218AKOS/randomtxts$ mkdir ran
+student2@MIT-ICT-LAB8-03:~/210953218AKOS/randomtxts$ cp -n 3 file3.txt ran
+cp: cannot stat '3': No such file or directory
+student2@MIT-ICT-LAB8-03:~/210953218AKOS/randomtxts$ cp -n  file3.txt ran
+student2@MIT-ICT-LAB8-03:~/210953218AKOS/randomtxts$ cp -i  file3.txt ran
+cp: overwrite 'ran/file3.txt'? n
+student2@MIT-ICT-LAB8-03:~/210953218AKOS/randomtxts$ cp -f  file3.txt ran
+student2@MIT-ICT-LAB8-03:~/210953218AKOS/randomtxts$ ^C
