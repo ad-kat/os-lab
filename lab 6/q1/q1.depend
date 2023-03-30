@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1680203151 source:/home/adkat/Desktop/vs_code_files/cpp files/lab 6/q1/main.cpp
+	<iostream>
+	<queue>
+	<algorithm>
+	<vector>
+

@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1680193975 source:/home/adkat/Desktop/vs_code_files/cpp files/lab 5/q2/main.cpp
+	<iostream>
+	<unistd.h>
+	<sys/wait.h>
+	<vector>
+	<string>
+	<algorithm>
+
