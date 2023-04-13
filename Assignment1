@@ -1,0 +1,148 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+struct Process {
+    int pid,at,bt,rem_time, priority;
+};
+
+vector<Process> Entry() {
+    cout << "No. of Processes: "; int n;cin >> n;
+    vector<Process> p(n);
+    cout << "PID \t AT \t BT \t Priority" << endl;
+    for(int i = 0; i < n; i++) {
+
+        cin >> p[i].pid >> p[i].at >> p[i].bt >> p[i].priority;
+        p[i].rem_time = p[i].bt;
+    }
+    return p;
+}
+
+int min(vector<Process>&p, int n, int timer) {
+    int min_time = 9999;
+    int min = -1;
+
+    for(int i = 0; i<n; i++)
+    {
+        if(p[i].at <= timer && p[i].rem_time > 0 && p[i].bt < min_time) {
+            min_time = p[i].bt;
+            min = i;
+        }
+    }
+    return min;
+}
+int minprior(vector<Process>&p, int n, int timer) {
+
+    int pr = 100;
+    int index=-1;
+
+    for(int i = 0; i<n; i++)
+    {
+        if(p[i].at <= timer && p[i].rem_time > 0 && p[i].priority < pr) {
+            pr = p[i].priority;
+            index = i;
+        }
+    }
+    return index;
+}
+
+void SJF() {
+    vector<Process> p = Entry();
+    int n = p.size();
+    int timer = 0;
+    float TAT = 0;
+    float WAT = 0;
+    int done = 0;
+    while(done != n) {
+        int i = min(p, n, timer);
+        int start = timer;
+        int j = i;
+        int ran = p[i].rem_time;
+        while(j == i) {
+            timer++;
+            p[i].rem_time--;
+            j = min(p, n, timer);
+        }
+        cout << p[i].pid << " -> (" << start << " " << timer << ")" << endl;
+        if(p[i].rem_time == 0) {
+            TAT += (timer - p[i].at);
+            WAT += (TAT - p[i].bt);
+            done++;
+        }
+    }
+    TAT /= n;
+    WAT /= n;
+    cout << "Turnaround Time = " << TAT << " ms" << endl;
+    cout << "Waiting Time = " << WAT << " ms" << endl << endl;
+}
+
+void RR() {
+    vector<Process> p = Entry();
+    int n = p.size();
+    int q;   cout << "Enter quantum: "; cin >> q;
+    int timer = 0;
+    int done = 0;
+    float TAT = 0;
+    float WAT = 0;
+    while(done != n) {
+        for(int i = 0; i < n; i++) {
+            int count = q;
+            int start = timer;
+            while(p[i].rem_time > 0 && p[i].at <= timer && count > 0) {
+                timer++;
+                p[i].rem_time--;
+                count--;
+            }
+            if(start != timer) {
+                cout << p[i].pid << " -> (" << start << " " << timer << ")" << endl;
+                if(p[i].rem_time == 0) {
+                    TAT += (timer - p[i].at);
+                    WAT += (timer - p[i].at - p[i].bt);
+                    done++;
+                }
+            }
+        }
+    }
+    }
+    void Priority() {
+        vector<Process> p = Entry();
+        int n = p.size();
+        int timer = 0;
+        float TAT = 0;
+        float WAT = 0;
+        int done = 0;
+        while(done != n) {
+            int i = minprior(p, n, timer);
+            cout<<i<<endl;
+            int start = timer;
+            int j = i;
+            while(j == i) {
+                timer++;
+                p[i].rem_time--;
+                j = minprior(p, n, timer);
+            }
+            cout << p[i].pid << " -> (" << start << " " << timer << ")" << endl;
+            if(p[i].rem_time == 0) {
+                TAT += (timer - p[i].at);
+                WAT += (TAT - p[i].bt);
+                done++;
+            }
+        }
+        TAT /= n;
+        WAT /= n;
+        cout << "Turnaround Time = " << TAT << " ms" << endl;
+        cout << "Waiting Time = " << WAT << " ms" << endl << endl;
+    }
+
+int main() {
+
+    cout << "Preemptive SJF "<<endl;
+    //SJF();
+    cout << "Preemptive RR "<<endl;
+    //RR();
+    cout << "Non Preemptive priority "<<endl;
+    Priority();
+    return 0;
+}
+
