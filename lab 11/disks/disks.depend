@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1683228140 source:c:\users\katya\onedrive - manipal academy of higher education\files and documents\manipal\sem4\os lab\lab 11\disks\main.cpp
+	<iostream>
+	<vector>
+	<algorithm>
+	<cmath>
+
